@@ -1,58 +1,130 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../app/slices/chartSlice";
+import { numAmosPerTypes } from "../app/logic";
 
 const CommandPanel = () => {
 	const dispatch = useDispatch();
+	const { amosList } = useSelector((state) => state.amosSlice);
 
-	const generateChart = (type, data) => {
-		// Fill up store data for chart and its type
+	const [currentDataType, setCurrentDataType] = useState("Nothing");
 
-		const labels = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+	const [chartType, setChartType] = useState(null);
+	const [chartData, setChartData] = useState(null);
+	const [chartOptions, setChartOptions] = useState(null);
 
-		const testdata = {
+	// Chart Comparaison
+	// BAR and PIE chart with number of amos and number of users
+
+	// Chart Relation
+	// Number of amos per user
+
+	// Chart Composition
+	// PIE with all the types 56% mammal, 5% reptiles etc with the colors!
+
+	// Chart Distribution
+	// Geolocalisation
+
+	const setAmosType = () => {
+		// PIE with all the types 56% mammal, 5% reptiles etc with the colors!
+		const numTypes = numAmosPerTypes(amosList);
+
+		const labels = [
+			"Mammals",
+			"Birds",
+			"Fish",
+			"Amphibians",
+			"Reptiles",
+			"Invertebrates",
+		];
+
+		const colors = [
+			"#F887B0",
+			"#7EDCE6",
+			"#3289F6",
+			"#63BC55",
+			"#2D8159",
+			"#783BB6",
+		];
+
+		const data = {
 			labels: labels,
 			datasets: [
 				{
-					label: "Dataset 1 for " + type,
-					data: [12, 56, 48, 75, 66],
-					borderColor: "red",
-					backgroundColor: "#e57285",
-				},
-				{
-					label: "Dataset 2 for " + type,
-					data: [44, 78, 21, 35, 56],
-					borderColor: "blue",
-					backgroundColor: "#72a1e5",
+					label: "Types",
+					data: [
+						numTypes.mammal,
+						numTypes.bird,
+						numTypes.fish,
+						numTypes.amphibian,
+						numTypes.reptile,
+						numTypes.invertebrate,
+					],
+					borderColor: colors,
+					backgroundColor: colors,
 				},
 			],
 		};
 
-		const config = {
-			type: type,
-			data: testdata,
-			options: {
-				responsive: true,
-				plugins: {
-					legend: {
-						position: "top",
-					},
-					title: {
-						display: true,
-						text: "Chart.js Line Chart",
-					},
+		const options = {
+			responsive: true,
+			plugins: {
+				legend: {
+					position: "top",
+				},
+				title: {
+					display: true,
+					text: "Types",
 				},
 			},
 		};
 
-		dispatch(setData(config));
+		setCurrentDataType("Types of Amos");
+		setChartType("pie");
+		setChartData(data);
+		setChartOptions(options);
+	};
+
+	const generateChart = (type) => {
+		if (chartData !== null) {
+			const config = {
+				type: type !== null ? type : chartType,
+				data: chartData,
+				options: chartOptions,
+			};
+			dispatch(setData(config));
+		}
 	};
 
 	return (
 		<div className={"commandPanel"}>
-			<button onClick={() => generateChart("line", null)}>Line chart</button>
-			<button onClick={() => generateChart("pie", null)}>Pie chart</button>
-			<button onClick={() => generateChart("bar", null)}>Bar chart</button>
+			<h3>Type of data</h3>
+			<div className={"cmdDataBtnsWrapper"}>
+				<button onClick={setAmosType} className={"cmdDataBtns"}>
+					Types of Amos
+				</button>
+			</div>
+			<h3>Type of chart</h3>
+			<div className={"cmdChartTypeBtnsWrapper"}>
+				<button
+					onClick={() => generateChart("line")}
+					className={"cmdChartTypeBtns"}
+				>
+					Line chart type
+				</button>
+				<button
+					onClick={() => generateChart("pie")}
+					className={"cmdChartTypeBtns"}
+				>
+					Pie chart type
+				</button>
+				<button
+					onClick={() => generateChart("bar")}
+					className={"cmdChartTypeBtns"}
+				>
+					Bar chart type
+				</button>
+			</div>
 		</div>
 	);
 };

@@ -2,8 +2,7 @@ import React from "react";
 import { Line, Pie, Bar } from "react-chartjs-2";
 
 const Chart = ({ chartData }) => {
-	let config = {
-		type: JSON.stringify(chartData.type),
+	const config = {
 		data: JSON.stringify(chartData.data),
 		options: JSON.stringify(chartData.options),
 	};

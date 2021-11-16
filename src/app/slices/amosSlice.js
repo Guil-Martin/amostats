@@ -6,6 +6,7 @@ const archamosSlice = createSlice({
 		amosList: [],
 		userList: [],
 		locList: [],
+		eventList: [],
 		amosSingle: null,
 	},
 	reducers: {
@@ -21,6 +22,9 @@ const archamosSlice = createSlice({
 		setLocList: (state, action) => {
 			return { ...state, locList: action.payload };
 		},
+		setEventList: (state, action) => {
+			return { ...state, eventList: action.payload };
+		},
 	},
 });
 
@@ -29,6 +33,6 @@ export const {
 	setAmosSingle,
 	setUserList,
 	setLocList,
-	setAmosNewName,
+	setEventList,
 } = archamosSlice.actions;
 export default archamosSlice.reducer;
