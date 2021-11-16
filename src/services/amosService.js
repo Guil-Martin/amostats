@@ -1,10 +1,5 @@
 import { API } from "../apis/amosAPI";
-import {
-	setAmosList,
-	setAmosSingle,
-	setUserList,
-	setLocList,
-} from "../app/slices/amosSlice";
+import { setAmosList, setUserList, setLocList } from "../app/slices/amosSlice";
 
 export const serviceGetAllAmos = async (dispatch, currentUser) => {
 	try {
@@ -12,7 +7,6 @@ export const serviceGetAllAmos = async (dispatch, currentUser) => {
 			headers: { Authorization: "Bearer " + currentUser.playerToken },
 		});
 		if (response.status === 200) {
-			console.log("serviceGetAllAmos", response.data);
 			dispatch(setAmosList(response.data));
 		} else {
 			throw new Error("API get amos list status -> " + response.status);
@@ -28,7 +22,6 @@ export const serviceGetAllUsers = async (dispatch, currentUser) => {
 			headers: { Authorization: "Bearer " + currentUser.playerToken },
 		});
 		if (response.status === 200) {
-			console.log("serviceGetAllUsers", response.data);
 			dispatch(setUserList(response.data));
 		} else {
 			throw new Error("API get user list status -> " + response.status);
@@ -44,7 +37,6 @@ export const serviceGetAllLocs = async (dispatch, currentUser) => {
 			headers: { Authorization: "Bearer " + currentUser.playerToken },
 		});
 		if (response.status === 200) {
-			console.log("serviceGetAllLocs", response.data);
 			dispatch(setLocList(response.data));
 		} else {
 			throw new Error("API get loc list status -> " + response.status);

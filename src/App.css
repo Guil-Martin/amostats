@@ -67,6 +67,10 @@
 	justify-content: space-evenly;
 }
 
+.commandPanel {
+	height: 100%;
+}
+
 .chartWrapper {
 	height: 400px;
 }

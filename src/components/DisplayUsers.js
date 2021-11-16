@@ -25,7 +25,7 @@ const DisplayUsers = () => {
 						<div key={item.id} className={"elements userElement"}>
 							<div className={"value"}>Id: {item.id}</div>
 							<div className={"value"}>Name: {item.name}</div>
-							<div className={"value"}>EMail: {item.email}</div>
+							<div className={"value"}>Email: {item.email}</div>
 							<div className={"value"}>Created at: {item.created_at}</div>
 							<div className={"value"}>
 								Last connection: {item.connected_at}

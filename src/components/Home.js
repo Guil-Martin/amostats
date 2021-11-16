@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import BarChart from "./BarChart";
-import PieChart from "./PieChart";
-import LineChart from "./LineChart";
+import Login from "./Login";
+import Chart from "./Chart";
 import DisplayAmos from "./DisplayAmos";
 import DisplayUsers from "./DisplayUsers";
 import DisplayLocs from "./DisplayLocs";
-import Login from "./Login";
+import CommandPanel from "./CommandPanel";
 
 const Home = () => {
 	const { amosList } = useSelector((state) => state.amosSlice);
 	const { currentUser } = useSelector((state) => state.userSlice);
+	const { chartData } = useSelector((state) => state.chartSlice);
 
 	if (currentUser === null) return <Login />;
 
@@ -18,11 +18,11 @@ const Home = () => {
 		<div className={"container home"}>
 			<h2>Commands:</h2>
 			<div className={"commandsWrapper"}>
-				<button>A button</button>
+				<CommandPanel />
 			</div>
 			<h2>Charts:</h2>
 			<div className={"chartWrapper"}>
-				<LineChart />
+				{chartData !== null && <Chart chartData={chartData} />}
 			</div>
 			<h2>Requests results:</h2>
 			<div className={"resultWrapper"}>
