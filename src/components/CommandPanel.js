@@ -98,13 +98,16 @@ const CommandPanel = () => {
 
 	return (
 		<div className={"commandPanel"}>
-			<h3>Type of data</h3>
+			<h3>
+				Type of data:{" "}
+				<span className={"cmdTypeOfDataTxt"}>{currentDataType}</span>
+			</h3>
 			<div className={"cmdDataBtnsWrapper"}>
 				<button onClick={setAmosType} className={"cmdDataBtns"}>
 					Types of Amos
 				</button>
 			</div>
-			<h3>Type of chart</h3>
+			<h3>Generate chart</h3>
 			<div className={"cmdChartTypeBtnsWrapper"}>
 				<button
 					onClick={() => generateChart("line")}

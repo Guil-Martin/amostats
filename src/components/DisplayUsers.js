@@ -9,7 +9,7 @@ const DisplayUsers = () => {
 
 	useEffect(() => {
 		serviceGetAllUsers(dispatch, currentUser);
-	}, []);
+	}, [dispatch, currentUser]);
 
 	// connected_at: "2021-11-15T07:35:31.000Z"
 	// created_at: "2021-11-15T07:35:31.349Z"

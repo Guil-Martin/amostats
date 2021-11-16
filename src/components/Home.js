@@ -8,7 +8,6 @@ import DisplayLocs from "./DisplayLocs";
 import CommandPanel from "./CommandPanel";
 
 const Home = () => {
-	const { amosList } = useSelector((state) => state.amosSlice);
 	const { currentUser } = useSelector((state) => state.userSlice);
 	const { chartData } = useSelector((state) => state.chartSlice);
 
@@ -20,7 +19,7 @@ const Home = () => {
 			<div className={"commandsWrapper"}>
 				<CommandPanel />
 			</div>
-			<h2>Charts:</h2>
+			<h2>Chart:</h2>
 			<div className={"chartWrapper"}>
 				{chartData !== null && <Chart chartData={chartData} />}
 			</div>

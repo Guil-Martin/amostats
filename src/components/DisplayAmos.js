@@ -9,7 +9,7 @@ const DisplayAmos = () => {
 
 	useEffect(() => {
 		serviceGetAllAmos(dispatch, currentUser);
-	}, []);
+	}, [dispatch, currentUser]);
 
 	return (
 		<div className={"wrappers amosWrapper"}>
@@ -17,7 +17,7 @@ const DisplayAmos = () => {
 				amosList.map((item) => {
 					return (
 						<div key={item.id} className={"elements amosElement"}>
-							<img src={item.image_path} alt="Photo" />
+							<img src={item.image_path} alt="Amos" />
 							<div className={"value"}>ID: {item.id}</div>
 							<div className={"value"}>Amos ID: {item.animal_id}</div>
 							<div className={"value"}>Name: {item.name}</div>

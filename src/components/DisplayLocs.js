@@ -9,7 +9,7 @@ const DisplayLocs = () => {
 
 	useEffect(() => {
 		serviceGetAllLocs(dispatch, currentUser);
-	}, []);
+	}, [dispatch, currentUser]);
 
 	// catches: {
 	// 	accuracy: "20.0"

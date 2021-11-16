@@ -1,8 +1,3 @@
-let amosList;
-let userList;
-let locList;
-let eventList;
-
 export const numAmosPerTypes = (amosList) => {
 	// "mammal": "#F887B0",
 	// "bird": "#7EDCE6",
@@ -44,6 +39,8 @@ export const numAmosPerTypes = (amosList) => {
 			default:
 		}
 	}
+
+
 
 	return types;
 };
