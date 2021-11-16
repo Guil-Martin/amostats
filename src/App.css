@@ -1,68 +1,121 @@
 .App {
-  height: 100vh;
-  text-align: center;
-  background-color: rgba(30, 30, 30, 1);
+	min-height: 100vh;
+	text-align: center;
+	background-color: rgba(30, 30, 30, 1);
 }
 
 .container {
-  height: "100%";
-  margin: auto;
-  max-width: 1200px;
-  min-width: 500px;
+	margin: auto;
+	max-width: 1200px;
+	min-width: 500px;
 }
 
 .formLogin {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	height: 100vh;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .formLogin input {
-  padding: 10px;
-  margin: 10px;
+	padding: 15px;
+	margin: 10px;
 }
 
 .mailInput,
 .passwordInput {
-  display: flex;
-  font-weight: bold;
-  font-size: 20px;
-  margin: 10px;
-  width: 50%;
-  text-align: center;
-  color: #fff;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+	display: flex;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 10px;
+	width: 50%;
+	text-align: center;
+	color: #fff;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 .mailInput input,
 .passwordInput input {
-  width: 40%;
+	width: 40%;
 }
 
 .loginInputBtn {
-  width: 30%;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 20px;
-  background-color: #72a1e5;
-  border: solid 2px black;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: #72a1e5;
+	border: solid 2px black;
+	border-radius: 8px;
 }
 
-.amosWrapper {
-  display: flex;
-  flex-wrap: wrap;
+.home {
 }
 
-.amosElement {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 30px;
+.home h2 {
+	margin: 0;
+	height: 50px;
+	color: white;
+}
+
+.commandsWrapper {
+	height: 200px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.chartWrapper {
+	height: 400px;
+}
+
+.chart {
+	width: 50%;
+	height: 100%;
+}
+
+.resultWrapper {
+	height: 500px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.wrappers {
+	height: 100%;
+	width: 33%;
+	overflow: auto;
+}
+
+.wrappers .value {
+	width: 90%;
+	overflow-x: hidden;
+	padding: 2px;
+}
+
+.amosWrapper img {
+	width: 40%;
+}
+
+.elements {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(142, 173, 240, 0.76);
+	color: white;
+	margin: 5px;
+	padding: 5px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 12px;
+	box-shadow: 10px 5px 5px rgba(92, 92, 92, 0.473);
+	border: solid 2px black;
+}
+
+.userElement {
+}
+
+.locElement {
 }

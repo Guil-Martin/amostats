@@ -4,6 +4,8 @@ const archamosSlice = createSlice({
 	name: "archamos",
 	initialState: {
 		amosList: [],
+		userList: [],
+		locList: [],
 		amosSingle: null,
 	},
 	reducers: {
@@ -13,21 +15,20 @@ const archamosSlice = createSlice({
 		setAmosSingle: (state, action) => {
 			return { ...state, amosSingle: action.payload };
 		},
-		setAmosNewName: (state, action) => {
-			console.log("action.payload", action.payload);
-			return {
-				...state,
-				amosSingle: { ...state.amosSingle, name: action.payload.name },
-				amosList: state.amosList.map((amos) =>
-					amos.id === action.payload.id
-						? { ...amos, name: action.payload.name }
-						: amos
-				),
-			};
+		setUserList: (state, action) => {
+			return { ...state, userList: action.payload };
+		},
+		setLocList: (state, action) => {
+			return { ...state, locList: action.payload };
 		},
 	},
 });
 
-export const { setAmosList, setAmosSingle, setAmosNewName } =
-	archamosSlice.actions;
+export const {
+	setAmosList,
+	setAmosSingle,
+	setUserList,
+	setLocList,
+	setAmosNewName,
+} = archamosSlice.actions;
 export default archamosSlice.reducer;
