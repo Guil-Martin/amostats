@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../app/slices/chartSlice";
-import { numAmosPerTypes } from "../app/logic";
+import { numAmosPerTypes, occurencesPerDay } from "../app/utils";
 
 const CommandPanel = () => {
 	const dispatch = useDispatch();
 	const { amosList } = useSelector((state) => state.amosSlice);
+	const { userList } = useSelector((state) => state.amosSlice);
 
 	const [currentDataType, setCurrentDataType] = useState("Nothing");
 
@@ -25,7 +26,7 @@ const CommandPanel = () => {
 	// Chart Distribution
 	// Geolocalisation
 
-	const setAmosType = () => {
+	const chartAmosType = () => {
 		// PIE with all the types 56% mammal, 5% reptiles etc with the colors!
 		const numTypes = numAmosPerTypes(amosList);
 
@@ -37,7 +38,6 @@ const CommandPanel = () => {
 			"Reptiles",
 			"Invertebrates",
 		];
-
 		const colors = [
 			"#F887B0",
 			"#7EDCE6",
@@ -46,7 +46,6 @@ const CommandPanel = () => {
 			"#2D8159",
 			"#783BB6",
 		];
-
 		const data = {
 			labels: labels,
 			datasets: [
@@ -60,27 +59,182 @@ const CommandPanel = () => {
 						numTypes.reptile,
 						numTypes.invertebrate,
 					],
-					borderColor: colors,
 					backgroundColor: colors,
 				},
 			],
 		};
-
 		const options = {
 			responsive: true,
 			plugins: {
+				datalabels: {},
 				legend: {
 					position: "top",
 				},
 				title: {
 					display: true,
-					text: "Types",
+					text: "Number of Amos per type",
 				},
 			},
 		};
 
 		setCurrentDataType("Types of Amos");
 		setChartType("pie");
+		setChartData(data);
+		setChartOptions(options);
+	};
+
+	const chartAmosAndUser = () => {
+		const numUsers = userList.length;
+		const numAmos = amosList.length;
+		// const avgAmosPerUser = numUsers > 0 && numAmos > 0 ? numUsers / numAmos : 0;
+
+		const labels = ["# of Users", "# of Amos"];
+		const colors = ["#ff1c42", "#3289F6"];
+		const data = {
+			labels: labels,
+			datasets: [
+				{
+					label: "Users and Amos",
+					data: [numUsers, numAmos],
+					borderColor: colors,
+					backgroundColor: colors,
+				},
+			],
+		};
+		const options = {
+			responsive: true,
+			plugins: {
+				datalabels: {},
+				legend: {
+					position: "top",
+				},
+				title: {
+					display: true,
+					text: "Users and Amos",
+				},
+			},
+		};
+
+		setCurrentDataType("Users and Amos");
+		setChartType("bar");
+		setChartData(data);
+		setChartOptions(options);
+	};
+
+	const chartSubsInTime = () => {
+		const dateStart = Date.parse("2021-10-21T16:01:06.240Z");
+		const dateEnd = Date.now();
+
+		const userCreatedDates = occurencesPerDay(userList);
+		const amosCaptures = occurencesPerDay(amosList);
+
+		const data = {
+			datasets: [
+				{
+					label: "Subscriptions",
+					data: userCreatedDates,
+					borderColor: "#ff1c42",
+					backgroundColor: "#ff1c42",
+				},
+				{
+					label: "Captures",
+					data: amosCaptures,
+					borderColor: "#3289F6",
+					backgroundColor: "#3289F6",
+				},
+			],
+		};
+
+		const options = {
+			responsive: true,
+			scales: {
+				xAxes: {
+					title: "Time",
+					type: "time",
+					time: {
+						unit: "day",
+					},
+					min: dateStart,
+					max: dateEnd,
+					distribution: "linear",
+					grid: {
+						color: "rgba(255, 255, 255, 0.3)",
+					},
+				},
+				yAxes: {
+					beginAtZero: true,
+					grid: {
+						color: "rgba(255, 255, 255, 0.3)",
+					},
+				},
+			},
+			plugins: {
+				datalabels: {},
+				legend: {
+					position: "top",
+				},
+				title: {
+					display: true,
+					text: "Subs and captures in time",
+				},
+			},
+		};
+
+		setCurrentDataType("Subcribtions by time");
+		setChartType("bar");
+		setChartData(data);
+		setChartOptions(options);
+	};
+
+	const chartAmosPerUser = () => {
+		// Amos per users
+
+		const data = {
+			datasets: [
+				{
+					label: "Subscriptions",
+					data: [],
+					borderColor: "#ff1c42",
+					backgroundColor: "#ff1c42",
+				},
+			],
+		};
+
+		const options = {
+			responsive: true,
+			scales: {
+				xAxes: {
+					title: "Time",
+					type: "time",
+					time: {
+						unit: "day",
+					},
+					distribution: "linear",
+					grid: {
+						color: "rgba(255, 255, 255, 0.3)",
+					},
+				},
+				yAxes: {
+					beginAtZero: true,
+					grid: {
+						color: "rgba(255, 255, 255, 0.3)",
+					},
+				},
+			},
+			plugins: {
+				datalabels: {},
+				legend: {
+					position: "top",
+				},
+				title: {
+					display: true,
+					text: "Amos per user",
+				},
+			},
+		};
+
+		setCurrentDataType("Amos per user");
+		setChartType("bar");
 		setChartData(data);
 		setChartOptions(options);
 	};
@@ -103,8 +257,14 @@ const CommandPanel = () => {
 				<span className={"cmdTypeOfDataTxt"}>{currentDataType}</span>
 			</h3>
 			<div className={"cmdDataBtnsWrapper"}>
-				<button onClick={setAmosType} className={"cmdDataBtns"}>
+				<button onClick={chartSubsInTime} className={"cmdDataBtns"}>
+					Subscribe/Time
+				</button>
+				<button onClick={chartAmosType} className={"cmdDataBtns"}>
 					Types of Amos
+				</button>
+				<button onClick={chartAmosAndUser} className={"cmdDataBtns"}>
+					Amos per user
 				</button>
 			</div>
 			<h3>Generate chart</h3>

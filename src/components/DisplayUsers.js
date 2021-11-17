@@ -11,12 +11,6 @@ const DisplayUsers = () => {
 		serviceGetAllUsers(dispatch, currentUser);
 	}, [dispatch, currentUser]);
 
-	// connected_at: "2021-11-15T07:35:31.000Z"
-	// created_at: "2021-11-15T07:35:31.349Z"
-	// email: "jm@gmail.com"
-	// id: "073f94f4-d83f-40c7-9bc8-1d346ade4d0a"
-	// name: "jm"
-
 	return (
 		<div className={"wrappers userWrapper"}>
 			{userList.length > 0 &&

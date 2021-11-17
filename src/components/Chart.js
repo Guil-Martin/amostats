@@ -1,5 +1,6 @@
 import React from "react";
 import { Line, Pie, Bar } from "react-chartjs-2";
+import "chartjs-adapter-date-fns";
 
 const Chart = ({ chartData }) => {
 	const config = {

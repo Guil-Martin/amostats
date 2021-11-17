@@ -9,6 +9,7 @@
 	margin: auto;
 	flex-direction: column;
 	justify-content: center;
+	padding: 15px;
 	min-height: 100vh;
 	max-width: 1200px;
 	min-width: 500px;
@@ -93,7 +94,7 @@
 }
 
 .chart {
-	width: 50%;
+	width: 60%;
 	height: 100%;
 }
 
