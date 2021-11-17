@@ -9,7 +9,6 @@ import CommandPanel from "./CommandPanel";
 
 const Home = () => {
 	const { currentUser } = useSelector((state) => state.userSlice);
-	const { chartData } = useSelector((state) => state.chartSlice);
 
 	if (currentUser === null) return <Login />;
 
@@ -21,7 +20,7 @@ const Home = () => {
 			</div>
 			<h2>Chart:</h2>
 			<div className={"chartWrapper"}>
-				{chartData !== null && <Chart chartData={chartData} />}
+				<Chart />
 			</div>
 			<h2>Requests results:</h2>
 			<div className={"resultWrapper"}>

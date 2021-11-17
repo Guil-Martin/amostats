@@ -11,18 +11,6 @@ const DisplayLocs = () => {
 		serviceGetAllLocs(dispatch, currentUser);
 	}, [dispatch, currentUser]);
 
-	// catches: {
-	// 	accuracy: "20.0"
-	// 	altitude: "71.0"
-	// 	amos_id: "19ee0880-0422-4e34-8440-d0073c0ede71"
-	// 	created_at: "2021-10-31T12:16:28.764Z"
-	// 	id: "09b2c762-c415-43d4-8349-4ca20c88ddf0"
-	// 	lat: "47.0"
-	// 	long: "-2.0"
-	// 	updated_at: "2021-10-31T12:16:28.764Z"
-	// },
-	// species: "dog"
-
 	return (
 		<div className={"wrappers locWrapper"}>
 			{locList.length > 0 &&
@@ -30,7 +18,7 @@ const DisplayLocs = () => {
 					return (
 						<div key={item.catches.id} className={"elements locElement"}>
 							<div className="value">Amos ID: {item.catches.id}</div>
-							<div className="value">{item.species}</div>
+							<div className="value">Species: {item.species}</div>
 							<div className="value">Accuracy: {item.catches.accuracy}</div>
 							<div className="value">Altitude: {item.catches.altitude}</div>
 							<div className="value">lat: {item.catches.lat}</div>

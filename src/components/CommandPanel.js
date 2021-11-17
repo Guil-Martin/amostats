@@ -24,7 +24,6 @@ const CommandPanel = () => {
 	// PIE with all the types 56% mammal, 5% reptiles etc with the colors!
 
 	// Chart Distribution
-	// Geolocalisation
 
 	const chartAmosType = () => {
 		// PIE with all the types 56% mammal, 5% reptiles etc with the colors!
@@ -121,7 +120,7 @@ const CommandPanel = () => {
 		setChartOptions(options);
 	};
 
-	const chartSubsInTime = () => {
+	const chartSubsCapturesTime = () => {
 		const dateStart = Date.parse("2021-10-21T16:01:06.240Z");
 		const dateEnd = Date.now();
 
@@ -180,60 +179,7 @@ const CommandPanel = () => {
 			},
 		};
 
-		setCurrentDataType("Subcribtions by time");
-		setChartType("bar");
-		setChartData(data);
-		setChartOptions(options);
-	};
-
-	const chartAmosPerUser = () => {
-		// Amos per users
-
-		const data = {
-			datasets: [
-				{
-					label: "Subscriptions",
-					data: [],
-					borderColor: "#ff1c42",
-					backgroundColor: "#ff1c42",
-				},
-			],
-		};
-
-		const options = {
-			responsive: true,
-			scales: {
-				xAxes: {
-					title: "Time",
-					type: "time",
-					time: {
-						unit: "day",
-					},
-					distribution: "linear",
-					grid: {
-						color: "rgba(255, 255, 255, 0.3)",
-					},
-				},
-				yAxes: {
-					beginAtZero: true,
-					grid: {
-						color: "rgba(255, 255, 255, 0.3)",
-					},
-				},
-			},
-			plugins: {
-				datalabels: {},
-				legend: {
-					position: "top",
-				},
-				title: {
-					display: true,
-					text: "Amos per user",
-				},
-			},
-		};
-
-		setCurrentDataType("Amos per user");
+		setCurrentDataType("Subscriptions and captures over time");
 		setChartType("bar");
 		setChartData(data);
 		setChartOptions(options);
@@ -257,14 +203,14 @@ const CommandPanel = () => {
 				<span className={"cmdTypeOfDataTxt"}>{currentDataType}</span>
 			</h3>
 			<div className={"cmdDataBtnsWrapper"}>
-				<button onClick={chartSubsInTime} className={"cmdDataBtns"}>
-					Subscribe/Time
+				<button onClick={chartSubsCapturesTime} className={"cmdDataBtns"}>
+					Subs/Captures over time
 				</button>
 				<button onClick={chartAmosType} className={"cmdDataBtns"}>
 					Types of Amos
 				</button>
 				<button onClick={chartAmosAndUser} className={"cmdDataBtns"}>
-					Amos per user
+					Users and Amos
 				</button>
 			</div>
 			<h3>Generate chart</h3>
