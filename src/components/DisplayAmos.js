@@ -18,14 +18,17 @@ const DisplayAmos = () => {
 					return (
 						<div key={item.id} className={"elements amosElement"}>
 							<img src={item.image_path} alt="Amos" />
-							<div className={"value"}>ID: {item.id}</div>
-							<div className={"value"}>Amos ID: {item.animal_id}</div>
-							<div className={"value"}>Name: {item.name}</div>
-							<div className={"value"}>Level: {item.level}</div>
-							<div className={"value"}>Species: {item.species}</div>
-							<div className={"value"}>User id: {item.user_id}</div>
-							<div className={"value"}>Created at: {item.created_at}</div>
-							<div className={"value"}>Updated at: {item.updated_at}</div>
+							<div className={"valuesWrapper"}>
+								<div className={"value"}>ID: {item.id}</div>
+								<div className={"value"}>Amos ID: {item.animal_id}</div>
+								<div className={"value"}>Name: {item.name}</div>
+								<div className={"value"}>Level: {item.level}</div>
+								<div className={"value"}>Species: {item.species}</div>
+								<div className={"value"}>User id: {item.user_id}</div>
+								<div className={"value"}>Created at: {item.created_at}</div>
+								<div className={"value"}>Updated at: {item.updated_at}</div>
+								<div className={"value"}>Location: {item.location}</div>
+							</div>
 						</div>
 					);
 				})}

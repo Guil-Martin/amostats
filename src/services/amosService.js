@@ -1,5 +1,6 @@
 import { API } from "../apis/amosAPI";
 import { setAmosList, setUserList, setLocList } from "../app/slices/amosSlice";
+const geohash = require("../../node_modules/ngeohash");
 
 export const serviceGetAllAmos = async (dispatch, currentUser) => {
 	try {
@@ -55,11 +56,6 @@ export const serviceGetAmosUser = async (dispatch, currentUser) => {
 			}
 		);
 		if (response.status === 200) {
-			// let newList = [];
-			// for (const amos of response.data) {
-			// 	let amm = new Amos(amos).serialize();
-			// 	newList.push(amm);
-			// }
 			dispatch(setAmosList(response.data));
 		} else {
 			throw new Error("API get amos list status -> " + response.status);

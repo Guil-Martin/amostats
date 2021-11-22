@@ -1,16 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { serviceLoginUser } from "../services/userService";
+import { Dots } from "react-activity";
+import "react-activity/dist/Dots.css";
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const [mailInput, setMailInput] = useState("");
 	const [passwordInput, setPasswordInput] = useState("");
 
-	const handleSubmit = (e) => {
+	const [loading, setLoading] = useState("");
+
+	const handleSubmit = async (e) => {
+		setLoading("Login...");
 		e.preventDefault();
-		serviceLoginUser(dispatch, { email: mailInput, password: passwordInput });
+		await serviceLoginUser(dispatch, {
+			email: mailInput,
+			password: passwordInput,
+		});
+		setLoading("");
 	};
+
+	if (loading !== "")
+		return (
+			<div className={"loadingIndicator"}>
+				<div className={"loadingIndicatorTxt"}>Loading...</div>
+				<Dots color={"white"} />
+			</div>
+		);
 
 	return (
 		<div className={"container"}>

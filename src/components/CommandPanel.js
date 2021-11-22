@@ -145,6 +145,7 @@ const CommandPanel = () => {
 		};
 
 		const options = {
+			fontColor: "#fff",
 			responsive: true,
 			scales: {
 				xAxes: {

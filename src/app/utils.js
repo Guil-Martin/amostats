@@ -67,6 +67,10 @@ export const occurencesPerDay = (dataSet) => {
 	return dateOccurences;
 };
 
+export const getCreatedDates = (dataSet) => {
+	return dataSet.map((item) => Date.parse(item.created_at));
+};
+
 export const dateInterval = (dateStrStart, dateStrEnd) => {
 	const dateStartParsed = new Date(Date.parse(dateStrStart));
 	const dateEndParsed = new Date(Date.parse(dateStrEnd));

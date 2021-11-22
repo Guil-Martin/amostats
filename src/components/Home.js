@@ -4,7 +4,6 @@ import Login from "./Login";
 import Chart from "./Chart";
 import DisplayAmos from "./DisplayAmos";
 import DisplayUsers from "./DisplayUsers";
-import DisplayLocs from "./DisplayLocs";
 import CommandPanel from "./CommandPanel";
 
 const Home = () => {
@@ -26,7 +25,6 @@ const Home = () => {
 			<div className={"resultWrapper"}>
 				<DisplayAmos />
 				<DisplayUsers />
-				<DisplayLocs />
 			</div>
 		</div>
 	);
